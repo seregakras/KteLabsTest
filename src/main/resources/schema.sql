@@ -1,4 +1,4 @@
-create table doctors
+create table if not exists doctors
 (
     id             bigserial
         primary key,
@@ -7,14 +7,14 @@ create table doctors
     specialization varchar(255)
         constraint doctors_specialization_check
             check ((specialization)::text = ANY
-        ((ARRAY ['THERAPIST'::character varying, 'SURGEON'::character varying, 'DENTIST'::character varying, 'CARDIOLOGIST'::character varying, 'RADIOLOGIST'::character varying])::text[])),
+                   ((ARRAY ['THERAPIST'::character varying, 'SURGEON'::character varying, 'DENTIST'::character varying, 'CARDIOLOGIST'::character varying, 'RADIOLOGIST'::character varying])::text[])),
     uuid           varchar(255)
 );
 
 alter table doctors
     owner to "user";
 
-create table patients
+create table if not exists patients
 (
     birthdate    date,
     id           bigserial
@@ -28,7 +28,7 @@ create table patients
 alter table patients
     owner to "user";
 
-create table talons
+create table if not exists talons
 (
     date_of_slot date,
     is_actual    boolean,

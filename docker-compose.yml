@@ -1,0 +1,24 @@
+#docker-compose up
+version: "3.9"
+services:
+  postgres:
+    container_name: KteLabsTestDB
+    image: postgres
+    environment:
+      POSTGRES_DB: "test"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "12345"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./dataDB:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin

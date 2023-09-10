@@ -1,4 +1,6 @@
 package com.example.ktelabstest.repositories;
 
-public interface DoctorRepository {
+import com.example.ktelabstest.model.Doctor;
+
+public interface DoctorRepository extends GenericRepository<Doctor> {
 }
